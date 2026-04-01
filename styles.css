@@ -378,9 +378,7 @@ button {
 
 /* Image */
 .hero-image {
-  display: flex;
-  justify-content: center;
-  order: -1; /* mobile: imagen arriba del texto */
+  display: none; /* oculta en mobile */
 }
 .hero-img-placeholder {
   position: relative;
@@ -414,8 +412,8 @@ button {
   .hero { padding: 5rem 0 6rem; }
   .hero-inner { grid-template-columns: 1fr 1fr; }
   .hero-image {
+    display: flex; /* visible en desktop */
     justify-content: flex-end;
-    order: 0; /* desktop: imagen a la derecha (orden natural del HTML) */
   }
   .hero-img-placeholder { width: 320px; height: 320px; }
 }
