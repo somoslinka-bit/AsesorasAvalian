@@ -1,6 +1,6 @@
 /* ================================================================
    styles.css — Asesoras Avalian
-   Diseño mobile-first · Paleta sky blue (#0EA5E9)
+   Diseño mobile-first · Paleta verde Avalian (#00986b)
    ================================================================ */
 
 /* ── RESET & BASE ── */
@@ -44,10 +44,10 @@ button {
 
 /* ── VARIABLES ── */
 :root {
-  --color-primary:    #0EA5E9;
-  --color-primary-d:  #0284C7;
-  --color-primary-dd: #0369A1;
-  --color-primary-l:  #E0F2FE;
+  --color-primary:    #00986b;
+  --color-primary-d:  #007a56;
+  --color-primary-dd: #006647;
+  --color-primary-l:  #e6f7f2;
   --color-text:       #1E293B;
   --color-text-muted: #64748B;
   --color-border:     #E2E8F0;
@@ -56,8 +56,8 @@ button {
   --color-wa-d:       #1EAD54;
   --radius:           0.75rem;
   --radius-sm:        0.5rem;
-  --shadow:           0 4px 24px rgba(14,165,233,0.10);
-  --shadow-md:        0 8px 32px rgba(14,165,233,0.15);
+  --shadow:           0 4px 24px rgba(0,152,107,0.10);
+  --shadow-md:        0 8px 32px rgba(0,152,107,0.15);
   --transition:       0.2s ease;
   --container:        1200px;
   --header-h:         68px;
@@ -797,7 +797,7 @@ button {
    IMPACT SECTION
    ================================================================ */
 .impact-section {
-  background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+  background: linear-gradient(135deg, #00986b 0%, #007a56 100%);
   padding: 4rem 0;
   text-align: center;
 }
@@ -829,7 +829,7 @@ button {
 }
 .impact-cta {
   background: #fff !important;
-  color: #0EA5E9 !important;
+  color: #00986b !important;
   font-weight: 700;
   min-height: 52px;
   padding: 0 2rem;
