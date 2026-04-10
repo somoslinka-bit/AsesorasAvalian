@@ -70,6 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  /* ── FORMULARIO: grupo familiar condicional ── */
+  const paraQuienSelect = document.getElementById('para-quien');
+  const grupoGroup      = document.getElementById('grupo-group');
+
+  function actualizarGrupo() {
+    if (!paraQuienSelect || !grupoGroup) return;
+    const val = paraQuienSelect.value;
+    const esIndividual = val === 'yo' || val === 'adolescente';
+    grupoGroup.style.display = esIndividual ? 'none' : '';
+  }
+
+  if (paraQuienSelect) {
+    paraQuienSelect.addEventListener('change', actualizarGrupo);
+    actualizarGrupo();
+  }
+
+
   /* ── FORMULARIO ── */
   const form      = document.getElementById('contactForm');
   const success   = document.getElementById('formSuccess');

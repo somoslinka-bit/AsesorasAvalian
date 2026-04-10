@@ -1088,7 +1088,7 @@ button {
 }
 
 .logo-placeholder--light span { color: #fff; }
-.logo-placeholder--light strong { color: #38BDF8; }
+.logo-placeholder--light strong { color: #8bdc65; }
 
 .footer-tagline {
   font-size: 0.85rem;
@@ -1233,4 +1233,102 @@ button {
   border: none;
 }
 .modal-close:hover { background: var(--color-bg-alt); color: var(--color-text); }
+
+/* ================================================================
+   LOGO AVALIAN
+   ================================================================ */
+.logo-avalian-wrap {
+  background: var(--color-primary);
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.logo-avalian-img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+.logo-placeholder--light .logo-avalian-wrap {
+  background: rgba(255,255,255,0.12);
+}
+
+/* ================================================================
+   TESTIMONIOS MARQUEE
+   ================================================================ */
+.testimonios-section {
+  padding-bottom: 3rem;
+  overflow: hidden;
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  margin-top: 2rem;
+  /* bordes desvanecidos */
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.testimonio-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow);
+}
+
+.testimonio-stars {
+  color: #F59E0B;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.testimonio-texto {
+  font-size: 0.92rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.testimonio-nombre {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ================================================================
+   FORMULARIO — CAMPOS NUEVOS
+   ================================================================ */
+.form-optional {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
 .modal-close svg { width: 18px; height: 18px; }
