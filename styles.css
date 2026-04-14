@@ -1048,6 +1048,21 @@ button {
   border-top: 1px solid var(--color-border);
 }
 
+/* Plans CTA block */
+.plans-cta-block {
+  text-align: center;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.plans-cta-block p {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 540px;
+}
+
 /* FAQ CTA */
 .faq-cta {
   text-align: center;
