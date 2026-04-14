@@ -456,6 +456,8 @@ button {
 }
 
 .section-sub--center { text-align: center; margin: 0 auto 2.5rem; }
+.section-label--center { display: block; text-align: center; }
+.section-title--center { text-align: center; }
 
 /* Light variants (form section) */
 .section-label--light { background: rgba(255,255,255,0.2); color: #fff; }
