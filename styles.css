@@ -666,7 +666,22 @@ button {
   align-items: center;
   gap: 0.3rem;
 }
-.trust-icon { font-size: 2rem; line-height: 1; }
+.trust-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+  flex-shrink: 0;
+}
+.trust-icon-wrap svg { width: 26px; height: 26px; }
+
+.trust-icon-wrap--green { background: #DCFCE7; color: #16A34A; }
+.trust-icon-wrap--blue  { background: #DBEAFE; color: #2563EB; }
+.trust-icon-wrap--amber { background: #FEF3C7; color: #D97706; }
+
 .trust-number {
   font-size: 1.4rem;
   font-weight: 800;
