@@ -59,6 +59,8 @@ button {
   --shadow:           0 4px 24px rgba(0,152,107,0.10);
   --shadow-md:        0 8px 32px rgba(0,152,107,0.15);
   --transition:       0.2s ease;
+  --ease-out:         cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:      cubic-bezier(0.77, 0, 0.175, 1);
   --container:        1200px;
   --header-h:         68px;
 }
@@ -99,15 +101,26 @@ button {
   font-size: 0.95rem;
   line-height: 1;
   cursor: pointer;
-  transition: background var(--transition), color var(--transition),
-              box-shadow var(--transition), transform var(--transition);
+  transition:
+    background   180ms var(--ease-out),
+    color        180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    box-shadow   180ms var(--ease-out),
+    transform    160ms var(--ease-out);
   white-space: nowrap;
   min-height: 44px;
   border: 2px solid transparent;
   text-decoration: none;
 }
 
-.btn:active { transform: scale(0.98); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); }
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 80ms;
+}
 
 /* Primary */
 .btn-primary {
@@ -118,7 +131,7 @@ button {
 .btn-primary:hover {
   background: var(--color-primary-d);
   border-color: var(--color-primary-d);
-  box-shadow: var(--shadow);
+  box-shadow: 0 6px 24px rgba(0,152,107,0.35);
 }
 
 /* WhatsApp */
@@ -130,7 +143,7 @@ button {
 .btn-whatsapp:hover {
   background: var(--color-wa-d);
   border-color: var(--color-wa-d);
-  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+  box-shadow: 0 6px 24px rgba(37,211,102,0.40);
 }
 
 /* Outline */
@@ -298,11 +311,63 @@ button {
 /* ================================================================
    HERO
    ================================================================ */
+/* Keyframes de entrada del hero */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
 .hero {
   position: relative;
-  background: linear-gradient(135deg, var(--color-primary-dd) 0%, var(--color-primary) 60%, #38BDF8 100%);
-  padding: 4rem 0 5rem;
+  background: var(--color-primary-dd); /* fallback si el video no carga */
+  padding: 5rem 0 7rem;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+}
+
+/* Video de fondo */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Overlay: gradiente lateral + vignette inferior */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(0, 10, 20, 0.45) 100%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(0, 20, 40, 0.72) 0%,
+      rgba(0, 35, 60, 0.48) 55%,
+      rgba(0, 50, 80, 0.22) 100%
+    );
+  z-index: 1;
 }
 
 .hero-inner {
@@ -310,53 +375,66 @@ button {
   grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
-.hero-content { position: relative; z-index: 1; }
+.hero-content { position: relative; }
 
 /* Badge */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.30);
   color: #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
   border-radius: 99px;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  /* Stagger 1 */
+  animation: heroFadeUp 700ms var(--ease-out) both;
+  animation-delay: 0ms;
 }
 .hero-badge svg {
   width: 8px;
   height: 8px;
   color: #86EFAC;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
 /* Title */
 .hero-title {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 900;
   color: #fff;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
+  text-shadow:
+    0 2px 4px  rgba(0,0,0,0.5),
+    0 8px 24px rgba(0,0,0,0.35);
+  /* Stagger 2 */
+  animation: heroFadeUp 750ms var(--ease-out) both;
+  animation-delay: 110ms;
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: rgba(255,255,255,0.9);
-  line-height: 1.65;
-  margin-bottom: 2rem;
-  max-width: 540px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.40);
+  /* Stagger 3 */
+  animation: heroFadeUp 750ms var(--ease-out) both;
+  animation-delay: 220ms;
 }
 
 /* CTAs */
@@ -365,6 +443,9 @@ button {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  /* Stagger 4 */
+  animation: heroFadeUp 700ms var(--ease-out) both;
+  animation-delay: 350ms;
 }
 
 /* Micro */
@@ -372,30 +453,12 @@ button {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.8);
-}
-
-/* Image */
-.hero-image {
-  display: none; /* oculta en mobile */
-}
-.hero-img-placeholder {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-img-placeholder span {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.6);
-  white-space: nowrap;
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.70);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  /* Stagger 5 */
+  animation: heroFadeUp 700ms var(--ease-out) both;
+  animation-delay: 460ms;
 }
 
 /* Wave */
@@ -405,17 +468,27 @@ button {
   left: 0;
   right: 0;
   line-height: 0;
+  z-index: 3;
 }
 .hero-wave svg { width: 100%; height: 60px; }
 
 @media (min-width: 768px) {
-  .hero { padding: 5rem 0 6rem; }
-  .hero-inner { grid-template-columns: 1fr 1fr; }
-  .hero-image {
-    display: flex; /* visible en desktop */
-    justify-content: flex-end;
+  .hero { padding: 6rem 0 8rem; }
+  .hero-inner { max-width: 680px; }
+}
+
+/* Reducción de motion — mantener fades, quitar traslaciones */
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge,
+  .hero-title,
+  .hero-subtitle,
+  .hero-ctas,
+  .hero-micro {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
-  .hero-img-placeholder { width: 320px; height: 320px; }
+  .hero-badge svg { animation: none; }
 }
 
 /* ================================================================
