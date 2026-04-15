@@ -517,8 +517,8 @@ button {
   gap: 0;
   width: max-content;
   will-change: transform;
-  animation: carouselScroll 18s linear infinite;
-  -webkit-animation: carouselScroll 18s linear infinite;
+  animation: carouselScroll 35s linear infinite;
+  -webkit-animation: carouselScroll 35s linear infinite;
 }
 .carousel-marquee-track:hover {
   animation-play-state: paused;
