@@ -188,6 +188,25 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
       submitBtn.style.opacity = '1';
+
+      // Tracking: lead generado
+      if (typeof gtag === 'function') {
+        const paraQuienVal = form.querySelector('[name="para-quien"]')?.value || '';
+        const modalidadVal = form.querySelector('[name="modalidad"]')?.value || '';
+        const contactoVal  = form.querySelector('[name="contacto"]')?.value || '';
+        // GA4
+        gtag('event', 'generate_lead', {
+          para_quien: paraQuienVal,
+          modalidad:  modalidadVal,
+          contacto:   contactoVal,
+        });
+        // Google Ads — conversión formulario
+        gtag('event', 'conversion', {
+          send_to:  'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
+          value:    1.0,
+          currency: 'ARS',
+        });
+      }
     }, 900);
   });
 
@@ -223,6 +242,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && !privacyModal.hidden) closeModal();
     });
   }
+
+
+  /* ── TRACKING: clicks en WhatsApp ── */
+  document.addEventListener('click', (e) => {
+    const waBtn = e.target.closest('[data-wa-location]');
+    if (!waBtn) return;
+    const location = waBtn.dataset.waLocation || 'desconocido';
+    if (typeof gtag === 'function') {
+      // GA4
+      gtag('event', 'whatsapp_click', { location });
+      // Google Ads — conversión WhatsApp
+      gtag('event', 'conversion', {
+        send_to:  'AW-18090554003/TSdhCIHznpwcEJPln7JD',
+        value:    1.0,
+        currency: 'ARS',
+      });
+    }
+  });
 
 
   /* ── FAQ: animar arrow ── */
