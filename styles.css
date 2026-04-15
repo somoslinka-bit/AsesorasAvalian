@@ -514,7 +514,7 @@ button {
 /* Track que se mueve */
 .carousel-marquee-track {
   display: flex;
-  gap: 1.5rem;
+  gap: 0;
   width: max-content;
   will-change: transform;
   animation: carouselScroll 18s linear infinite;
@@ -534,6 +534,7 @@ button {
 .c-card {
   position: relative;
   flex: 0 0 clamp(260px, 38vw, 380px);
+  margin-right: 1.5rem;
   aspect-ratio: 1 / 1;
   border-radius: 1.25rem;
   overflow: hidden;
