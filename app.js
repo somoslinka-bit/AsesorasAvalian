@@ -274,14 +274,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ── CARRUSEL DE IMÁGENES ── */
+  /* ── CARRUSEL PASARELA ── */
   (function () {
+    const track  = document.querySelector('.carousel-track');
     const slides = document.querySelectorAll('.c-slide');
     const dots   = document.querySelectorAll('.c-dot');
-    if (!slides.length) return;
+    if (!track || !slides.length) return;
 
     let current = 0;
     let timer;
+
+    function getOffset(idx) {
+      // Desplaza el track para centrar el slide activo
+      const stage    = document.querySelector('.carousel-stage');
+      const slideW   = slides[0].offsetWidth;
+      const gap      = parseFloat(getComputedStyle(track).gap) || 20;
+      const stageW   = stage.offsetWidth;
+      const offset   = idx * (slideW + gap) - (stageW - slideW) / 2;
+      return -Math.max(0, offset);
+    }
 
     function goTo(idx) {
       slides[current].classList.remove('active');
@@ -291,13 +302,14 @@ document.addEventListener('DOMContentLoaded', () => {
       slides[current].classList.add('active');
       dots[current].classList.add('active');
       dots[current].setAttribute('aria-pressed', 'true');
+      track.style.transform = `translateX(${getOffset(idx)}px)`;
     }
 
     function startTimer() {
       timer = setInterval(() => goTo((current + 1) % slides.length), 4500);
     }
 
-    // Navegación por dots
+    // Click en dots
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
         clearInterval(timer);
@@ -306,13 +318,34 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Pausa al hover para no interrumpir al usuario
+    // Click en slides laterales para navegar a ellos
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => {
+        if (i === current) return;
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      });
+    });
+
+    // Pausa al hover
     const stage = document.querySelector('.carousel-stage');
     if (stage) {
       stage.addEventListener('mouseenter', () => clearInterval(timer));
       stage.addEventListener('mouseleave', startTimer);
     }
 
+    // Recalcular posición al resize
+    window.addEventListener('resize', () => {
+      track.style.transition = 'none';
+      track.style.transform  = `translateX(${getOffset(current)}px)`;
+      requestAnimationFrame(() => {
+        track.style.transition = '';
+      });
+    }, { passive: true });
+
+    // Posición inicial
+    goTo(0);
     startTimer();
   })();
 
