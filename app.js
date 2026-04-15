@@ -70,6 +70,69 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  /* ── CARRUSEL: loop infinito pixel-perfect vía JS ── */
+  (function () {
+    const track = document.querySelector('.carousel-marquee-track');
+    if (!track) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Cards originales (sin aria-hidden) para medir el ancho exacto del primer set
+    const originalCards = Array.from(track.querySelectorAll('.c-card:not([aria-hidden])'));
+
+    function medir() {
+      return originalCards.reduce((total, card) => {
+        const margin = parseFloat(window.getComputedStyle(card).marginRight) || 0;
+        return total + card.offsetWidth + margin;
+      }, 0);
+    }
+
+    let anchura = 0;
+    let pos = 0;
+    let raf = null;
+    const velocidad = 0.5; // px por frame (~30px/s a 60fps)
+
+    function paso() {
+      pos += velocidad;
+      if (pos >= anchura) pos -= anchura;
+      track.style.transform = `translateX(-${pos}px)`;
+      raf = requestAnimationFrame(paso);
+    }
+
+    function pausar() {
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+    }
+
+    function reanudar() {
+      if (!raf) raf = requestAnimationFrame(paso);
+    }
+
+    function iniciar() {
+      anchura = medir();
+      if (anchura <= 0) return;
+      reanudar();
+    }
+
+    // Pausa en hover (desktop)
+    track.addEventListener('mouseenter', pausar);
+    track.addEventListener('mouseleave', reanudar);
+
+    // Recalcular al cambiar tamaño de ventana
+    window.addEventListener('resize', () => {
+      pausar();
+      anchura = medir();
+      if (pos >= anchura) pos = 0;
+      reanudar();
+    }, { passive: true });
+
+    // Arrancar cuando todas las imágenes estén cargadas
+    if (document.readyState === 'complete') {
+      iniciar();
+    } else {
+      window.addEventListener('load', iniciar);
+    }
+  })();
+
+
   /* ── FORMULARIO: grupo familiar condicional ── */
   const paraQuienSelect = document.getElementById('para-quien');
   const grupoGroup      = document.getElementById('grupo-group');
