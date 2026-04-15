@@ -506,8 +506,9 @@ button {
 .carousel-marquee-wrapper {
   overflow: hidden;
   margin-top: 3rem;
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  transform: translateZ(0);
 }
 
 /* Track que se mueve */
@@ -515,10 +516,13 @@ button {
   display: flex;
   gap: 1.5rem;
   width: max-content;
+  will-change: transform;
   animation: carouselScroll 18s linear infinite;
+  -webkit-animation: carouselScroll 18s linear infinite;
 }
 .carousel-marquee-track:hover {
   animation-play-state: paused;
+  -webkit-animation-play-state: paused;
 }
 
 @keyframes carouselScroll {
@@ -1454,19 +1458,23 @@ button {
   overflow: hidden;
   margin-top: 2rem;
   /* bordes desvanecidos */
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  transform: translateZ(0);
 }
 
 .marquee-track {
   display: flex;
   gap: 1.25rem;
   width: max-content;
+  will-change: transform;
   animation: marqueeScroll 32s linear infinite;
+  -webkit-animation: marqueeScroll 32s linear infinite;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
+  -webkit-animation-play-state: paused;
 }
 
 @keyframes marqueeScroll {
