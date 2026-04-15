@@ -273,4 +273,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+  /* ── CARRUSEL DE IMÁGENES ── */
+  (function () {
+    const slides = document.querySelectorAll('.c-slide');
+    const dots   = document.querySelectorAll('.c-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-pressed', 'false');
+      current = idx;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-pressed', 'true');
+    }
+
+    function startTimer() {
+      timer = setInterval(() => goTo((current + 1) % slides.length), 4500);
+    }
+
+    // Navegación por dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      });
+    });
+
+    // Pausa al hover para no interrumpir al usuario
+    const stage = document.querySelector('.carousel-stage');
+    if (stage) {
+      stage.addEventListener('mouseenter', () => clearInterval(timer));
+      stage.addEventListener('mouseleave', startTimer);
+    }
+
+    startTimer();
+  })();
+
 });

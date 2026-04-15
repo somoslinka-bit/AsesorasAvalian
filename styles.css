@@ -377,6 +377,7 @@ button {
   align-items: center;
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
 .hero-content { position: relative; }
@@ -411,10 +412,10 @@ button {
 
 /* Title */
 .hero-title {
-  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-size: clamp(2.8rem, 9vw, 5.5rem);
   font-weight: 900;
   color: #fff;
-  line-height: 1.05;
+  line-height: 1.02;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
   text-shadow:
@@ -431,6 +432,7 @@ button {
   line-height: 1.7;
   margin-bottom: 2.25rem;
   max-width: 520px;
+  margin-inline: auto;
   text-shadow: 0 1px 8px rgba(0,0,0,0.40);
   /* Stagger 3 */
   animation: heroFadeUp 750ms var(--ease-out) both;
@@ -441,6 +443,7 @@ button {
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   /* Stagger 4 */
@@ -474,7 +477,7 @@ button {
 
 @media (min-width: 768px) {
   .hero { padding: 6rem 0 8rem; }
-  .hero-inner { max-width: 680px; }
+  .hero-inner { max-width: 820px; margin-inline: auto; }
 }
 
 /* Reducción de motion — mantener fades, quitar traslaciones */
@@ -489,6 +492,112 @@ button {
     transform: none;
   }
   .hero-badge svg { animation: none; }
+}
+
+/* ================================================================
+   CARRUSEL
+   ================================================================ */
+.carousel-section {
+  overflow: visible;
+}
+
+.carousel-stage {
+  position: relative;
+  width: min(440px, 86vw);
+  margin: 3rem auto 0;
+}
+
+/* Ghost frames decorativos — dan profundidad sin ser obvios */
+.carousel-ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  pointer-events: none;
+  border: 2.5px solid var(--color-primary);
+  opacity: 0.16;
+}
+.carousel-ghost--l {
+  transform: rotate(-5.5deg) translate(-20px, 14px);
+  background: var(--color-primary-l);
+}
+.carousel-ghost--r {
+  transform: rotate(5.5deg) translate(20px, 14px);
+  background: var(--color-primary-l);
+}
+
+/* Card principal */
+.carousel-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #000;
+  box-shadow:
+    0 4px 12px  rgba(0,0,0,0.08),
+    0 20px 56px rgba(0,0,0,0.18);
+}
+
+/* Barra de acento superior */
+.carousel-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-primary-dd), var(--color-primary) 60%, #38BDF8);
+  z-index: 2;
+}
+
+/* Track */
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Slides con crossfade */
+.c-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
+}
+.c-slide.active { opacity: 1; }
+
+.c-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+.c-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--color-border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    width      280ms var(--ease-out),
+    background 280ms var(--ease-out);
+}
+.c-dot.active {
+  width: 28px;
+  background: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .carousel-stage { width: min(480px, 70vw); }
 }
 
 /* ================================================================
