@@ -919,7 +919,21 @@ button {
 }
 .asesora-card:hover { box-shadow: var(--shadow-md); }
 
-.asesora-photo { width: 80px; height: 80px; }
+.asesora-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.asesora-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
 
 .photo-placeholder,
 .photo-placeholder--2 {
