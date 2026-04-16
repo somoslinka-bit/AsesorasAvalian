@@ -336,18 +336,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const numeroMatch = href.match(/wa\.me\/(\d+)/);
     const asesora = numeroMatch ? (WA_ASESORAS[numeroMatch[1]] || 'desconocida') : 'ninguna';
 
-    if (typeof gtag === 'function') {
-      // GA4: siempre trackear el click con asesora identificada
-      gtag('event', 'whatsapp_click', { location, abre_wa: esWaReal, asesora });
+    if (typeof gtag === 'function' && esWaReal) {
+      // GA4: solo cuando el usuario realmente abre WhatsApp
+      gtag('event', 'whatsapp_click', { location, asesora });
 
-      // Google Ads — conversión solo cuando el usuario realmente abre WhatsApp
-      if (esWaReal) {
-        gtag('event', 'conversion', {
-          send_to:  'AW-18090554003/TSdhCIHznpwcEJPln7JD',
-          value:    1.0,
-          currency: 'ARS',
-        });
-      }
+      // Google Ads — conversión WhatsApp
+      gtag('event', 'conversion', {
+        send_to:  'AW-18090554003/TSdhCIHznpwcEJPln7JD',
+        value:    1.0,
+        currency: 'ARS',
+      });
     }
   });
 
