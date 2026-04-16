@@ -1115,9 +1115,9 @@ button {
   gap: 0.4rem;
   padding: 0.45rem 1.1rem;
   border-radius: 999px;
-  border: 2px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.75);
+  border: 2px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   font-weight: 500;
   transition: border-color 0.18s, background 0.18s, color 0.18s;
@@ -1129,22 +1129,22 @@ button {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 2px solid var(--color-border);
   flex-shrink: 0;
   transition: border-color 0.18s, background 0.18s;
 }
 .radio-label input[type="radio"]:checked + .radio-pill {
-  border-color: #fff;
-  background: rgba(255,255,255,0.18);
-  color: #fff;
+  border-color: var(--color-primary);
+  background: rgba(0,150,107,0.07);
+  color: var(--color-primary);
 }
 .radio-label input[type="radio"]:checked + .radio-pill::before {
-  background: #fff;
-  border-color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
 }
 .radio-label:hover .radio-pill {
-  border-color: rgba(255,255,255,0.5);
-  color: #fff;
+  border-color: var(--color-primary);
+  color: var(--color-text);
 }
 
 /* Field errors */
