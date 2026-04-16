@@ -1091,28 +1091,60 @@ button {
   pointer-events: none;
 }
 
-/* Radio */
+/* Radio — pill buttons */
 .radio-group {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.75rem;
   margin-top: 0.25rem;
+  flex-wrap: wrap;
 }
 .radio-label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--color-text);
+  position: relative;
   cursor: pointer;
-  font-weight: 500;
 }
 .radio-label input[type="radio"] {
-  width: auto;
-  min-height: auto;
-  height: 18px;
-  width: 18px;
-  accent-color: var(--color-primary);
-  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.radio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: border-color 0.18s, background 0.18s, color 0.18s;
+  user-select: none;
+}
+.radio-pill::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  transition: border-color 0.18s, background 0.18s;
+}
+.radio-label input[type="radio"]:checked + .radio-pill {
+  border-color: #fff;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+.radio-label input[type="radio"]:checked + .radio-pill::before {
+  background: #fff;
+  border-color: #fff;
+}
+.radio-label:hover .radio-pill {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
 }
 
 /* Field errors */
