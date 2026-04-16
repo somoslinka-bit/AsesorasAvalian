@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let anchura = 0;
     let pos = 0;
     let raf = null;
-    const velocidad = 0.5; // px por frame (~30px/s a 60fps)
+    const velocidad = 1.2; // px por frame (~72px/s a 60fps)
 
     function paso() {
       pos += velocidad;
@@ -240,37 +240,49 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.innerHTML = 'Enviando…';
     submitBtn.style.opacity = '0.75';
 
-    // Simular envío (reemplazar con fetch a tu backend o Formspree)
-    setTimeout(() => {
-      form.hidden = true;
-      if (success) {
-        success.hidden = false;
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      // Restaurar por si el usuario vuelve atrás
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-      submitBtn.style.opacity = '1';
+    // Enviar a Formspree
+    const data = new FormData(form);
+    fetch('https://formspree.io/f/xkokjjvj', {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Error en el envío');
 
-      // Tracking: lead generado
-      if (typeof gtag === 'function') {
-        const paraQuienVal = form.querySelector('[name="para-quien"]')?.value || '';
-        const modalidadVal = form.querySelector('[name="modalidad"]')?.value || '';
-        const contactoVal  = form.querySelector('[name="contacto"]')?.value || '';
-        // GA4
-        gtag('event', 'generate_lead', {
-          para_quien: paraQuienVal,
-          modalidad:  modalidadVal,
-          contacto:   contactoVal,
-        });
-        // Google Ads — conversión formulario
-        gtag('event', 'conversion', {
-          send_to:  'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
-          value:    1.0,
-          currency: 'ARS',
-        });
-      }
-    }, 900);
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Tracking: lead generado
+        if (typeof gtag === 'function') {
+          const paraQuienVal = form.querySelector('[name="para-quien"]')?.value || '';
+          const modalidadVal = form.querySelector('[name="modalidad"]')?.value || '';
+          const contactoVal  = form.querySelector('[name="contacto"]')?.value || '';
+          // GA4
+          gtag('event', 'generate_lead', {
+            para_quien: paraQuienVal,
+            modalidad:  modalidadVal,
+            contacto:   contactoVal,
+          });
+          // Google Ads — conversión formulario
+          gtag('event', 'conversion', {
+            send_to:  'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
+            value:    1.0,
+            currency: 'ARS',
+          });
+        }
+      })
+      .catch(() => {
+        // Mostrar error sin perder los datos del usuario
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.opacity = '1';
+        const errorMsg = form.querySelector('.form-send-error');
+        if (errorMsg) errorMsg.hidden = false;
+      });
   });
 
 
@@ -308,19 +320,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ── TRACKING: clicks en WhatsApp ── */
+  const WA_ASESORAS = {
+    '5491165781998': 'Romina',
+    '5491133377000': 'Florencia',
+  };
+
   document.addEventListener('click', (e) => {
     const waBtn = e.target.closest('[data-wa-location]');
     if (!waBtn) return;
     const location = waBtn.dataset.waLocation || 'desconocido';
+    const href = waBtn.getAttribute('href') || '';
+    const esWaReal = href.startsWith('https://wa.me/');
+
+    // Detectar asesora por número en el href
+    const numeroMatch = href.match(/wa\.me\/(\d+)/);
+    const asesora = numeroMatch ? (WA_ASESORAS[numeroMatch[1]] || 'desconocida') : 'ninguna';
+
     if (typeof gtag === 'function') {
-      // GA4
-      gtag('event', 'whatsapp_click', { location });
-      // Google Ads — conversión WhatsApp
-      gtag('event', 'conversion', {
-        send_to:  'AW-18090554003/TSdhCIHznpwcEJPln7JD',
-        value:    1.0,
-        currency: 'ARS',
-      });
+      // GA4: siempre trackear el click con asesora identificada
+      gtag('event', 'whatsapp_click', { location, abre_wa: esWaReal, asesora });
+
+      // Google Ads — conversión solo cuando el usuario realmente abre WhatsApp
+      if (esWaReal) {
+        gtag('event', 'conversion', {
+          send_to:  'AW-18090554003/TSdhCIHznpwcEJPln7JD',
+          value:    1.0,
+          currency: 'ARS',
+        });
+      }
     }
   });
 
