@@ -896,9 +896,6 @@ button {
   margin: 0 auto;
 }
 
-@media (min-width: 600px) {
-  .asesoras-grid { grid-template-columns: repeat(2, 1fr); }
-}
 
 .asesora-card {
   background: #fff;
