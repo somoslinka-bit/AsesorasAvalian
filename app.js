@@ -238,13 +238,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Tracking: lead generado
         if (typeof gtag === 'function') {
+          const emailVal    = form.querySelector('[name="email"]')?.value || '';
+          const telefonoVal = form.querySelector('[name="telefono"]')?.value || '';
+
+          // Datos de usuario para conversiones avanzadas (Google los hashea en su end)
+          const userData = {
+            email_address: emailVal.trim().toLowerCase(),
+            phone_number:  telefonoVal.trim().replace(/[\s\-\(\)]/g, ''),
+          };
+
           // GA4
-          gtag('event', 'generate_lead');
-          // Google Ads — conversión formulario
+          gtag('event', 'generate_lead', { user_data: userData });
+          // Google Ads — conversión formulario con Enhanced Conversions
           gtag('event', 'conversion', {
-            send_to:  'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
-            value:    1.0,
-            currency: 'ARS',
+            send_to:   'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
+            value:     1.0,
+            currency:  'ARS',
+            user_data: userData,
           });
         }
       })
