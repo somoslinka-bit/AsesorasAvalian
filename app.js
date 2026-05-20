@@ -133,23 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 
-  /* ── FORMULARIO: grupo familiar condicional ── */
-  const paraQuienSelect = document.getElementById('para-quien');
-  const grupoGroup      = document.getElementById('grupo-group');
-
-  function actualizarGrupo() {
-    if (!paraQuienSelect || !grupoGroup) return;
-    const val = paraQuienSelect.value;
-    const esIndividual = val === 'yo' || val === 'adolescente';
-    grupoGroup.style.display = esIndividual ? 'none' : '';
-  }
-
-  if (paraQuienSelect) {
-    paraQuienSelect.addEventListener('change', actualizarGrupo);
-    actualizarGrupo();
-  }
-
-
   /* ── FORMULARIO ── */
   const form      = document.getElementById('contactForm');
   const success   = document.getElementById('formSuccess');
@@ -164,12 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
     telefono: (v) => /^[\d\s\-\+\(\)]{6,20}$/.test(v.trim())
       ? null
       : 'Ingresá un teléfono válido.',
-    localidad: (v) => v.trim().length >= 2
+    email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
       ? null
-      : 'Ingresá tu localidad o zona.',
-    'para-quien': (v) => v !== ''
-      ? null
-      : 'Seleccioná una opción.',
+      : 'Ingresá un mail válido.',
   };
 
   // Mostrar error en campo
@@ -258,15 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Tracking: lead generado
         if (typeof gtag === 'function') {
-          const paraQuienVal = form.querySelector('[name="para-quien"]')?.value || '';
-          const modalidadVal = form.querySelector('[name="modalidad"]')?.value || '';
-          const contactoVal  = form.querySelector('[name="contacto"]')?.value || '';
           // GA4
-          gtag('event', 'generate_lead', {
-            para_quien: paraQuienVal,
-            modalidad:  modalidadVal,
-            contacto:   contactoVal,
-          });
+          gtag('event', 'generate_lead');
           // Google Ads — conversión formulario
           gtag('event', 'conversion', {
             send_to:  'AW-18090554003/TBIOCP7ynpwcEJPln7JD',
