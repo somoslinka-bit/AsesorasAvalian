@@ -116,7 +116,7 @@
             Planes para monotributistas, relación de dependencia y particulares
           </p>
           <div class="hero-ctas" style="justify-content:center;">
-            <a href="#formulario" class="btn btn-primary btn-lg">Quiero que me coticen</a>
+            <a href="#formulario" class="btn btn-primary btn-lg">Quiero que me coticen con descuento</a>
           </div>
           <p class="hero-micro">
             ✓ Sin compromiso · 100% personalizado · Respuesta en 24 hs hábiles
@@ -205,6 +205,87 @@
           <div class="c-card" aria-hidden="true">
             <div class="c-card-bar"></div>
             <img src="river.jpg" alt="" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FORMULARIO ========== -->
+    <section class="section form-section" id="formulario">
+      <div class="container">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <div class="section-label section-label--light">
+              Cotización sin costo
+            </div>
+            <h2 class="section-title section-title--light">
+              Cotizá tu plan en menos de 1 minuto
+            </h2>
+            <p class="section-sub section-sub--light">
+              Sin compromiso. 100% personalizado. Te contactamos a la brevedad por el medio que prefieras.
+            </p>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate="">
+            <div class="form-grid">
+              <div class="form-group form-group--full">
+                <label for="nombre">
+                  Nombre y apellido
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required="" autocomplete="name" />
+                <span class="field-error" id="nombre-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="telefono">
+                  Celular / WhatsApp
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 1234-5678 (con código de área)" required="" autocomplete="tel" />
+                <span class="field-error" id="telefono-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="email">
+                  Mail
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input type="email" id="email" name="email" placeholder="Ej: juan@email.com" required="" autocomplete="email" />
+                <span class="field-error" id="email-error" aria-live="polite"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-full form-submit">
+              Quiero mi cotización gratis
+              <svg viewBox="0 0 20 20" fill="currentColor" class="icon-sm" aria-hidden="true">
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.724.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+              </svg>
+            </button>
+            <p class="form-send-error" hidden="" style="color:#dc2626;font-size:0.875rem;margin-top:0.75rem;text-align:center;">
+              Hubo un problema al enviar. Por favor intentá de nuevo o escribinos por WhatsApp.
+            </p>
+            <p class="form-privacy">
+              Al enviar, aceptás que te contactemos para brindarte información y cotización. Tus datos no serán compartidos con terceros. <a href="politica-de-privacidad.html" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Política de privacidad</a>.
+            </p>
+            <!-- Honeypot anti-spam -->
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+              <label for="website_url">Dejá este campo vacío</label>
+              <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+            </div>
+          </form>
+          <div class="form-success" id="formSuccess" aria-live="polite" hidden="">
+            <div class="success-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="24" fill="#DCFCE7"></circle>
+                <path d="M14 24l8 8 12-16" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <h3>¡Listo! Tu consulta fue enviada.</h3>
+            <p>En breve te contactamos por el medio elegido. Si necesitás respuesta inmediata, escribinos por WhatsApp.</p>
+            <a href="https://wa.me/5491165781998?text=Hola,%20me%20comunico%20desde%20la%20web%20de%20Expertas%20en%20prepagas%20y%20necesito%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" data-wa-location="form_success">
+              <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.012 22l4.974-1.403A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.316-1.268l-.308-.184-3.203.904.866-3.113-.2-.32A7.96 7.96 0 014 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8z"></path>
+              </svg>
+              Escribir por WhatsApp ahora
+            </a>
           </div>
         </div>
       </div>
@@ -476,86 +557,6 @@
       </div>
     </section>
 
-    <!-- ========== FORMULARIO ========== -->
-    <section class="section form-section" id="formulario">
-      <div class="container">
-        <div class="form-wrapper">
-          <div class="form-header">
-            <div class="section-label section-label--light">
-              Cotización sin costo
-            </div>
-            <h2 class="section-title section-title--light">
-              Cotizá tu plan en menos de 1 minuto
-            </h2>
-            <p class="section-sub section-sub--light">
-              Sin compromiso. 100% personalizado. Te contactamos a la brevedad por el medio que prefieras.
-            </p>
-          </div>
-          <form class="contact-form" id="contactForm" novalidate="">
-            <div class="form-grid">
-              <div class="form-group form-group--full">
-                <label for="nombre">
-                  Nombre y apellido
-                  <span class="required" aria-hidden="true">*</span>
-                </label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required="" autocomplete="name" />
-                <span class="field-error" id="nombre-error" aria-live="polite"></span>
-              </div>
-              <div class="form-group form-group--full">
-                <label for="telefono">
-                  Celular / WhatsApp
-                  <span class="required" aria-hidden="true">*</span>
-                </label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 1234-5678 (con código de área)" required="" autocomplete="tel" />
-                <span class="field-error" id="telefono-error" aria-live="polite"></span>
-              </div>
-              <div class="form-group form-group--full">
-                <label for="email">
-                  Mail
-                  <span class="required" aria-hidden="true">*</span>
-                </label>
-                <input type="email" id="email" name="email" placeholder="Ej: juan@email.com" required="" autocomplete="email" />
-                <span class="field-error" id="email-error" aria-live="polite"></span>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-full form-submit">
-              Quiero mi cotización gratis
-              <svg viewBox="0 0 20 20" fill="currentColor" class="icon-sm" aria-hidden="true">
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.724.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-              </svg>
-            </button>
-            <p class="form-send-error" hidden="" style="color:#dc2626;font-size:0.875rem;margin-top:0.75rem;text-align:center;">
-              Hubo un problema al enviar. Por favor intentá de nuevo o escribinos por WhatsApp.
-            </p>
-            <p class="form-privacy">
-              Al enviar, aceptás que te contactemos para brindarte información y cotización. Tus datos no serán compartidos con terceros. <a href="politica-de-privacidad.html" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Política de privacidad</a>.
-            </p>
-            <!-- Honeypot anti-spam -->
-            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
-              <label for="website_url">Dejá este campo vacío</label>
-              <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
-            </div>
-          </form>
-          <div class="form-success" id="formSuccess" aria-live="polite" hidden="">
-            <div class="success-icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="24" cy="24" r="24" fill="#DCFCE7"></circle>
-                <path d="M14 24l8 8 12-16" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </div>
-            <h3>¡Listo! Tu consulta fue enviada.</h3>
-            <p>En breve te contactamos por el medio elegido. Si necesitás respuesta inmediata, escribinos por WhatsApp.</p>
-            <a href="https://wa.me/5491165781998?text=Hola,%20me%20comunico%20desde%20la%20web%20de%20Expertas%20en%20prepagas%20y%20necesito%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" data-wa-location="form_success">
-              <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.012 22l4.974-1.403A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.316-1.268l-.308-.184-3.203.904.866-3.113-.2-.32A7.96 7.96 0 014 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8z"></path>
-              </svg>
-              Escribir por WhatsApp ahora
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ========== FAQ ========== -->
     <section class="section" id="preguntas">
