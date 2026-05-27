@@ -426,6 +426,17 @@ button {
   animation-delay: 110ms;
 }
 
+.hero-offer {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.40);
+  animation: heroFadeUp 750ms var(--ease-out) both;
+  animation-delay: 165ms;
+}
+
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: rgba(255,255,255,0.88);
@@ -956,6 +967,13 @@ button {
   font-size: 0.82rem;
   color: var(--color-text-muted);
   margin-bottom: 0.5rem;
+}
+
+.wa-exclusivo {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .asesora-card--unified { max-width: 480px; margin: 0 auto; width: 100%; }
