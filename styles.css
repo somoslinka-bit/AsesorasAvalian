@@ -998,6 +998,20 @@ button {
   color: var(--color-text);
 }
 
+.asesora-logo-wrap {
+  background: var(--color-primary);
+  border-radius: var(--radius);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.asesora-logo {
+  width: 160px;
+  display: block;
+}
+
 /* ================================================================
    IMPACT SECTION
    ================================================================ */
