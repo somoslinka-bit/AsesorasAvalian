@@ -242,9 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const telefonoVal = form.querySelector('[name="telefono"]')?.value || '';
 
           // Datos de usuario para conversiones avanzadas (Google los hashea en su end)
+          let phoneFormatted = telefonoVal.trim().replace(/[\s\-\(\)]/g, '');
+          if (phoneFormatted && !phoneFormatted.startsWith('+')) {
+            phoneFormatted = '+54' + phoneFormatted;
+          }
           const userData = {
-            email_address: emailVal.trim().toLowerCase(),
-            phone_number:  telefonoVal.trim().replace(/[\s\-\(\)]/g, ''),
+            email:        emailVal.trim().toLowerCase(),
+            phone_number: phoneFormatted,
           };
 
           // GA4
